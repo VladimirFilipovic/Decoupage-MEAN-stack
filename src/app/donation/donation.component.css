@@ -1,0 +1,11 @@
+.row{
+  margin: auto;
+  height: 100%;
+}
+
+#rcorners1 {
+  border-radius: 25px;
+  padding: 20px; 
+  
+}
+

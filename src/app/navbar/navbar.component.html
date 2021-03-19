@@ -1,0 +1,127 @@
+<!--<nav class="navbar  navbar-expand  navbar-dark bg-dark flex-column align-items-start  " id="sidee">
+        <a [routerLink]="['']" class="navbar-brand">Decoupage</a>
+        <ul class="navbar-nav  nav-pills flex-column justify-content-between w-100 ">
+          <li class="nav-item ">
+
+            <a [routerLink]="['']"  routerLinkActive="activate" [routerLinkActiveOptions]="{ exact: true }"  class="nav-link  " >HOME</a>
+
+          </li>
+
+          <li class="nav-item ">
+
+              <a [routerLink]="['/create']" class="nav-link" routerLinkActive="activate" >Gallery</a>
+
+            </li>
+
+            <li class="nav-item ">
+
+              <a [routerLink]="['/mygallery']" class="nav-link" routerLinkActive="activate" >My Gallery</a>
+
+            </li>
+
+            <li *ngIf="!userIsAuthenticated" class="nav-item">
+
+              <a [routerLink]="['/signup']" class="nav-link" routerLinkActive="activate" >Signup</a>
+
+            </li>
+            <li *ngIf="!userIsAuthenticated" class="nav-item">
+
+              <a [routerLink]="['/login']" routerLinkActive="activate" class="nav-link" >Login</a>
+
+            </li>
+
+            <li *ngIf="userIsAuthenticated" class="nav-item">
+
+              <button (click)="onLogout()" id="myBtn" type="submit" class="btn btn-danger "  >Logout</button>
+
+            </li>
+
+            <li *ngIf="userIsAdmin && userIsAuthenticated" class="nav-item">
+
+              <a [routerLink]="['/users']" routerLinkActive="activate" class="nav-link" >Users</a>
+
+            </li>
+
+
+        </ul>
+
+      </nav>
+    -->
+
+<nav
+  class="navbar navbar-expand  navbar-dark bg-dark  flex-row align-items-start py-2"
+>
+  <div class="collapse navbar-collapse align-items-start">
+    <ul
+      class="flex-md-column nav-pills  flex-row navbar-nav w-100 justify-content-between"
+    >
+      <li class="nav-item  ">
+        <a [routerLink]="['']" class="navbar-brand pl-0">Decoupage</a>
+      </li>
+      <li class="nav-item ">
+        <a
+          [routerLink]="['']"
+          routerLinkActive="activate"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-link  "
+          >HOME</a
+        >
+      </li>
+
+      <li class="nav-item ">
+        <a
+          [routerLink]="['/create']"
+          class="nav-link"
+          routerLinkActive="activate"
+          >Gallery</a
+        >
+      </li>
+
+      <li class="nav-item ">
+        <a
+          [routerLink]="['/mygallery']"
+          class="nav-link"
+          routerLinkActive="activate"
+          >My Gallery</a
+        >
+      </li>
+
+      <li *ngIf="!userIsAuthenticated" class="nav-item">
+        <a
+          [routerLink]="['/signup']"
+          class="nav-link"
+          routerLinkActive="activate"
+          >Signup</a
+        >
+      </li>
+      <li *ngIf="!userIsAuthenticated" class="nav-item">
+        <a
+          [routerLink]="['/login']"
+          routerLinkActive="activate"
+          class="nav-link"
+          >Login</a
+        >
+      </li>
+
+      <li *ngIf="userIsAuthenticated" class="nav-item">
+        <button
+          (click)="onLogout()"
+          id="myBtn"
+          type="submit"
+          class="btn btn-danger "
+        >
+          Logout
+        </button>
+      </li>
+
+      <li *ngIf="userIsAdmin && userIsAuthenticated  "   class="nav-item">
+        <a
+          [routerLink]="['/users']"
+          routerLinkActive="activate"
+          class="nav-link"
+          >Users</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>

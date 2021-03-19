@@ -1,0 +1,106 @@
+<!--<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button
+        type="button"
+        class="navbar-toggle"
+        data-toggle="collapse"
+        data-target="#myNavbar"
+      >
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand" href="#">Talha</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <form id="signin" class="navbar-form navbar-right" role="form">
+            <div class="input-group">
+              <span class="input-group-addon"
+                ><i class="glyphicon glyphicon-user"></i
+              ></span>
+              <input
+                id="email"
+                type="email"
+                class="form-control"
+                name="email"
+                value=""
+                placeholder="Email Address"
+              />
+            </div>
+
+            <div class="input-group">
+              <span class="input-group-addon"
+                ><i class="glyphicon glyphicon-lock"></i
+              ></span>
+              <input
+                id="password"
+                type="password"
+                class="form-control"
+                name="password"
+                value=""
+                placeholder="Password"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>
+-->
+<div style="margin: auto">
+  <div class="container" style="margin: auto">
+    <div class="col-md-6" style="margin: auto">
+      <div id="logbox">
+        <form  (submit)="onSignup(signupForm)" #signupForm="ngForm"  id="signup" method="post" action="/signup">
+          <h1>Create an Account</h1>
+          <input
+          required
+          minlength="5"
+          pattern='^[a-zA-Z ]*$'
+          
+            ngModel
+            #userName="ngModel"
+            name="userName"
+            type="text"
+            class="input pass"
+            placeholder="User Name"
+          />
+          <div *ngIf="userName.invalid" class="alert alert-danger" role="alert">
+            You have to imput the username
+          </div>
+          <div *ngIf="userName.hasError('minlength')" class="alert alert-danger" role="alert">
+              You have to imput the username with min length of 5
+            </div>
+            <div *ngIf="userName.hasError('pattern')" class="alert alert-danger" role="alert">
+                Letters only
+              </div>
+          <input
+            required
+            minlength="5"
+            ngModel
+            type="password"
+            name="password"
+            class="input pass"
+            placeholder="Password"
+            #password="ngModel"
+          />
+          <div *ngIf="password.invalid" class="alert alert-danger" role="alert">
+            You have to imput the password
+          </div>
+          <div *ngIf="password.hasError('minlength')" class="alert alert-danger" role="alert">
+              You have to imput the password with mini length of 5
+            </div>
+          <input type="submit" value="Sign me up!" class="inputButton" />
+        </form>
+      </div>
+    </div>
+    <!--col-md-6-->
+  </div>
+</div>

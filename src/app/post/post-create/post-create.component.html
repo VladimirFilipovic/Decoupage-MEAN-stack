@@ -1,0 +1,98 @@
+
+<!--<form (submit)="onAddPost(postForm)" #postForm="ngForm">
+<div class="card" style="width: 18rem;">
+    <img src="" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <div class="form-group">
+          <label for="exampleFormControlTextarea1"></label>
+          <textarea #content="ngModel" required name="content" type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" ngModel placeholder="Enter email"></textarea>
+          <div *ngIf="content.invalid && (content.dirty || content.touched)" class="alert alert-danger" role="alert">
+              This is a danger alert—check it out!
+            </div>
+        </div>
+        <button    type="submit" class="btn btn-primary" >Submit</button>
+    </div>
+  </div>
+  <p>{{content.value}}</p>
+
+</form>
+-->
+<!-- Button trigger modal -->
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalAddPicture" aria-hidden="true">
+  <div id='modalica' class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Add a picture</h4>
+        <button  type="button" class="close" data-dismiss="modal" aria-label="Close" #closeAddExpenseModal>
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="form" (submit)='onAddPost()' >
+          <div class="form-group">
+            <label for="picture-title" class="col-form-label">Title:</label>
+            <input  formControlName="title" name="title"  type="text" class="form-control" id="picture-title" >
+            <div type="text" *ngIf="form.get('title').hasError('minlength')  " class="alert alert-danger" role="alert">
+                You have to imput the title with min length of 5
+              </div>
+              <div type="text" *ngIf="form.get('title').hasError('pattern')  " class="alert alert-danger" role="alert">
+                  Letters only
+                </div>
+                <div type="text" *ngIf="form.get('title').hasError('required')  " class="alert alert-danger" role="alert">
+                    You have to input the title
+                  </div>
+          </div>
+
+          <button (click)="filePicker.click()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03">Button</button>
+          <input  #filePicker type="file" style="visibility: hidden" (change)="onImagePicked($event)">
+
+          <div class="image-preview" *ngIf="imagePreview !=='' && imagePreview &&  form.get('image').valid ">
+            <img [src]="imagePreview" [alt]="form.value.title">
+          </div>
+          <div *ngIf="form.get('image').invalid" class="alert alert-danger" role="alert">
+              You have to upload a picture
+            </div>
+          <div class="form-group">
+            <label  for="picutre-text" class="col-form-label" >Description:</label>
+            <textarea type="text" formControlName="text"  name="text"   class="form-control" id="picture-text"  ></textarea>
+            <div type="text" *ngIf="form.get('text').hasError('minlength')  " class="alert alert-danger" role="alert">
+                You have to imput the title with min length of 5
+              </div>
+              <div type="text" *ngIf="form.get('text').hasError('pattern')  " class="alert alert-danger" role="alert">
+                  Letters only
+                </div>
+                <div type="text" *ngIf="form.get('text').hasError('required')  " class="alert alert-danger" role="alert">
+                    You have to input the title
+                  </div>
+
+
+          </div>
+
+
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button id="myBtn" type="submit" class="btn btn-primary "  >Save changes</button>
+
+            </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<section class=" jumbotron   text-center bg-dark text-white  ">
+    <div class="container">
+      <h1 name="aristName" class="jumbotron-heading"  >Welcome to {{artist}} 's gallery</h1>
+      <p  #artistName class="lead text-muted">Here you can see all of this artist's work.Feel free to leave a comment or like.Enjoy your stay ! Oh and dont forget to hit that donate button</p>
+      <p>
+        <a href="#" class="btn btn-lg btn-outline-success my-2"  data-toggle="modal" data-target="#myModal" #zindex >AddPost</a>
+      </p>
+
+    </div>
+ </section>

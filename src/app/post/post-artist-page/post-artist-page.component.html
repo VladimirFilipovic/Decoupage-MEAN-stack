@@ -1,0 +1,145 @@
+<app-post-artist-create></app-post-artist-create>
+
+<div class="album py-5 bg-dark ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 " *ngFor="let post of postsList">
+          <div class="card mb-4 shadow-sm">
+            <img
+              [src]="post.imagePath"
+              style="width: 100%"
+            />
+            <div class="card-body">
+              <p class="card-text">{{ post.content }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a
+                    class="btn btn-sm btn-outline-secondary"
+                    data-toggle="collapse"
+                    href="#{{ post.title }}"
+                    role="button"
+                  >
+                    View comments
+                  </a>
+                  <button
+                    *ngIf="userIsAdmin"
+                    (click)="onDelete(post.id)"
+                    class="btn btn-sm btn-outline-secondary"
+                  >
+                    Delete
+                  </button>
+                 
+                </div>
+              </div>
+              <div class="btn-group">
+                <!-- Like Button -->
+                <button
+                  *ngIf="userIsAuthenticated"
+                  type="button"
+                  name="button"
+                  class="btn btn-sm btn-success "
+                  (click)="likeBlog(post.id)"
+                >
+                  <span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Likes:
+                  {{ post.likes }}
+                </button>
+                <button
+                  *ngIf="userIsAuthenticated"
+                  type="button"
+                  name="button"
+                  class="btn btn-sm btn-danger"
+                  (click)="dislikeBlog(post.id)"
+                >
+                  <span class="glyphicon glyphicon-thumbs-down">&nbsp;</span
+                  >Dislikes: {{ post.dislikes }}
+                </button>
+                <button
+                  *ngIf="!userIsAuthenticated"
+                  type="button"
+                  name="button"
+                  class="btn btn-sm btn-success "
+                  (click)="likeBlog(post.id)"
+                  disabled="true"
+                >
+                  <span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Likes:
+                  {{ post.likes }}
+                </button>
+                <button
+                  *ngIf="!userIsAuthenticated"
+                  type="button"
+                  name="button"
+                  class="btn btn-sm btn-danger"
+                  (click)="dislikeBlog(post.id)"
+                  disabled="true"
+                >
+                  <span class="glyphicon glyphicon-thumbs-down">&nbsp;</span
+                  >Dislikes: {{ post.dislikes }}
+                </button>
+                <!-- Dropdown Menu Items -->
+              </div>
+            </div>
+            <div class="collapse" id="{{ post.title }}">
+              <div>
+                <form
+                  *ngIf="userIsAuthenticated"
+                  [formGroup]="formComment"
+                  (submit)="commentBlog(post.id)"
+                  required
+                >
+                  <div class="input-group mb-3">
+                    <input
+                      formControlName="comment"
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter your comment"
+                      aria-label="Recipient's username"
+                      aria-describedby="button-addon2"
+                      required
+                      minlength="5"
+                    />
+                    <div class="input-group-append">
+                      <button
+                        class="btn btn-outline-info"
+                        type="submit"
+                        id="button-addon2"
+                        *
+                      >
+                      Comment
+                       
+                      </button>
+                    </div>
+                  </div>
+  
+                  <div
+                    *ngIf="formComment.get('comment').hasError('required')"
+                    class="alert alert-danger"
+                    role="alert"
+                  >
+                    You have to input the comment
+                  </div>
+                  <div
+                    *ngIf="formComment.get('comment').hasError('minLength')"
+                    class="alert alert-danger"
+                    role="alert"
+                  >
+                    Comment length should be at least 5 characters
+                  </div>
+                </form>
+              </div>
+              <div
+                class="card card-body"
+                style="height: 5rem"
+                *ngFor="let comment of post.comments"
+              >
+                <p>
+                  <b>{{ comment.commentator }}</b
+                  >:{{ comment.comment }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

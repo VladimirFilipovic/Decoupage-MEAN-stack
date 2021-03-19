@@ -1,0 +1,130 @@
+<ul id="rcorners1" class=" list-group bg-dark text-white mb-3" *ngFor="let user of usersList">
+ <div >
+    <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-primary bg-dark text-white">
+   
+      Username:{{user.username}} 
+      Password:{{user.password}}
+   
+    </li>
+    <div class="input-group-append">
+    <button (click)="onUpdate(user.id,user.username,user.password)" class="btn btn-outline-warning" data-toggle="modal" data-target="#myModalUpdate" #zindex>
+        Update user
+      </button>
+      <button (click)="onDelete(user.id)" class="btn btn-outline-danger">Delete user</button>
+    </div>
+  </div>
+ 
+
+  <div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalAddPicture" aria-hidden="true">
+    <div id='modalica' class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Add a picture</h4>
+          <button  type="button" class="close" data-dismiss="modal" aria-label="Close" #closeAddExpenseModal1>
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formUpdate" (submit)='onUpdateUser()' >
+                <div class="form-group">
+                    <label for="picture-title" class="col-form-label">Title:</label>
+                    <input  formControlName="username" name="username"  type="text" class="form-control" id="picture-title" >
+                    <div type="text" *ngIf="formUpdate.get('username').hasError('minlength')  " class="alert alert-danger" role="alert">
+                        You have to imput username with min length of 5
+                      </div>
+                      <div *ngIf="formUpdate.get('username').invalid" class="alert alert-danger" role="alert">
+                          You have to imput the username
+                        </div>
+                        <div type="text" *ngIf="formUpdate.get('username').hasError('pattern')  " class="alert alert-danger" role="alert">
+                            Letters only
+                          </div>
+                 
+                  </div>
+        
+                  <div class="form-group">
+                    <label  for="picutre-text" class="col-form-label" >Description:</label>
+                    <textarea formControlName="password"  name="password"   class="form-control" id="picture-text"  ></textarea>
+                    <div *ngIf="formUpdate.get('password').invalid" class="alert alert-danger" role="alert">
+                        You have to imput the password
+                      </div>
+                      <div type="text" *ngIf="formUpdate.get('password').hasError('minlength')  " class="alert alert-danger" role="alert">
+                          You have to imput password with min length of 5
+                        </div>
+                      
+        
+                  </div>
+        
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="myBtns" type="submit" class="btn btn-primary "  >Save changes</button>
+
+              </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ul>
+
+<div id="rcorners1" class=" list-group bg-dark text-white ">
+    <button  class="btn  btn-outline-success" data-toggle="modal" data-target="#myModala" #zindex>
+        Add user
+      </button>
+</div>
+
+
+
+<div class="modal fade" id="myModala" tabindex="-1" role="dialog" aria-labelledby="modalAddPicture" aria-hidden="true">
+  <div id='modalica' class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Add a picture</h4>
+        <button  type="button" class="close" data-dismiss="modal" aria-label="Close" #closeAddExpenseModal>
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="form" (submit)='onAddUser()' >
+          <div class="form-group">
+            <label for="picture-title" class="col-form-label">Title:</label>
+            <input  formControlName="username" name="username"  type="text" class="form-control" id="picture-title" >
+            <div type="text" *ngIf="form.get('username').hasError('minlength')  " class="alert alert-danger" role="alert">
+                You have to imput username with min length of 5
+              </div>
+              <div *ngIf="form.get('username').invalid" class="alert alert-danger" role="alert">
+                  You have to imput the username
+                </div>
+                <div type="text" *ngIf="form.get('username').hasError('pattern')  " class="alert alert-danger" role="alert">
+                    Letters only
+                  </div>
+         
+          </div>
+
+          <div class="form-group">
+            <label  for="picutre-text" class="col-form-label" >Description:</label>
+            <textarea formControlName="password"  name="password"   class="form-control" id="picture-text"  ></textarea>
+            <div *ngIf="form.get('password').invalid" class="alert alert-danger" role="alert">
+                You have to imput the password
+              </div>
+              <div type="text" *ngIf="form.get('password').hasError('minlength')  " class="alert alert-danger" role="alert">
+                  You have to imput password with min length of 5
+                </div>
+              
+
+          </div>
+
+
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button id="myBtn" type="submit" class="btn btn-primary "  >Save changes</button>
+
+            </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
